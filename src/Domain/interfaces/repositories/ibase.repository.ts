@@ -6,5 +6,5 @@ export abstract class IBaseRepository<T> {
     public getByIdAsync: (id: ObjectID) => Promise<T>;
     public insertAsync: (entity: T) => Promise<T> ;
     public updateAsync: (entity: T, id: ObjectID) => Promise<T>;
-    public deleteAsync: (entity: T, id: ObjectID) => Promise<void>;
+    public deleteAsync: (id: ObjectID) => Promise<void>;
 }

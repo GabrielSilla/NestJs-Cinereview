@@ -42,12 +42,12 @@ export class BaseRepository<T> implements IBaseRepository<T> {
     }
 
     async updateAsync(entity: T, id: ObjectID): Promise<T> {
-        await this.db.collection(this.collection).updateOne({ _id: id }, entity);
+        await this.db.collection(this.collection).replaceOne({ _id: id }, entity);
         return entity;
     }
 
-    async deleteAsync(entity: T, id: ObjectID): Promise<void> {
-        await this.db.collection(this.collection).deleteOne({ _id: id }, entity);
+    async deleteAsync(id: ObjectID): Promise<void> {
+        await this.db.collection(this.collection).deleteOne({ _id: id });
         return;
     }
 }

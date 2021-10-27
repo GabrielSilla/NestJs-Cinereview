@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { Movie } from '../../Domain/models/movie';
 import { MovieService } from '../../Domain/services/movie.service';
 
 @Controller('movies')
-export class AppController {
+export class MoviesController {
   
   constructor(private readonly movieService: MovieService) {}
 
@@ -22,5 +22,15 @@ export class AppController {
   @Get('id/:id')
   async getMovieById(@Param('id') id: string): Promise<Movie> {
     return await this.movieService.getMovieById(id);
+  }
+
+  @Patch('update')
+  async updateMovie(@Body() movie: Movie): Promise<Movie> {
+    return await this.movieService.updateMovie(movie);
+  }
+
+  @Delete('delete/:id')
+  async deleteMovieById(@Param('id') id: string): Promise<void> {
+    return await this.movieService.deleteMovieById(id);
   }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { CacheModule, Module } from '@nestjs/common';
-import { AppController } from './API/controller/app.controller';
+import { MoviesController } from './API/controller/movies.controller';
 import { IMovieRepository } from './Domain/interfaces/repositories/imovie.repository';
 import { MovieService } from './Domain/services/movie.service';
 import { DatabaseModule } from './Infrastructure/Database/database.module';
@@ -16,7 +16,7 @@ import * as redisStore from 'cache-manager-redis-store';
       port: 6379
     }),
   ],
-  controllers: [AppController],
+  controllers: [MoviesController],
   providers: [
     MovieService,
     { provide: IMovieRepository, useClass: MovieRepository }

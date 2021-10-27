@@ -20,4 +20,12 @@ export class MovieService {
   async getMovieById(id: string): Promise<Movie> {
     return await this.movieRepo.getByIdAsync(new ObjectID(id));
   }
+
+  async updateMovie(movie: Movie): Promise<Movie> {
+    return await this.movieRepo.updateAsync(movie, movie.id);
+  }
+
+  async deleteMovieById(id: string): Promise<void> {
+    return await this.movieRepo.deleteAsync(new ObjectID(id));
+  }
 }
